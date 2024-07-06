@@ -16,8 +16,8 @@ const int kCanvasHeight = kGapHeight + kNumBlocksY * kBlockHeight
 const int kBarY = kCanvasHeight - kBarFloat - kBarHeight;
 
 const int kFrameRate = 60; // frames/sec
-const int kBarSpeed = kCanvasWidth / 2; // pixels/sec
-const int kBallSpeed = kBarSpeed;
+const int kBarSpeed = kCanvasWidth / 1; // pixels/sec
+const int kBallSpeed = kBarSpeed / 2;
 
 array<bitset<kNumBlocksX>, kNumBlocksY> blocks;
 

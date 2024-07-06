@@ -295,7 +295,7 @@ Terminal::Terminal(Task& task, const TerminalDescriptor* term_desc)
         kColumns * 8 + 8 + ToplevelWindow::kMarginX,
         kRows * 16 + 8 + ToplevelWindow::kMarginY,
         screen_config.pixel_format,
-        "MikanTerm");
+        "Terminal");
     DrawTerminal(*window_->InnerWriter(), {0, 0}, window_->InnerSize());
 
     layer_id_ = layer_manager->NewLayer()
@@ -559,7 +559,7 @@ void Terminal::ExecuteLine() {
       }
       DrawCursor(true);
     }
-  } else if (strcmp(command, "noterm") == 0) {
+  } else if (strcmp(command, "start") == 0) {
     auto term_desc = new TerminalDescriptor{
       first_arg, true, false, files_
     };
@@ -589,10 +589,18 @@ void Terminal::ExecuteLine() {
         PrintToFD(*files_[1], "-%02d%02d\n", -t.TimeZone / 60, -t.TimeZone % 60);
       }
     }
-  } else if (strcmp(command, "reboot") == 0) {
-    uefi_rt->ResetSystem(EfiResetWarm, EFI_SUCCESS, 0, nullptr);
-  } else if (strcmp(command, "poweroff") == 0) {
-    uefi_rt->ResetSystem(EfiResetShutdown, EFI_SUCCESS, 0, nullptr);
+  } else if (strcmp(command, "power") == 0) {
+    if(first_arg){
+      if(strcmp(first_arg, "-r") == 0){
+        uefi_rt->ResetSystem(EfiResetWarm, EFI_SUCCESS, 0, nullptr);
+      }else if(strcmp(first_arg, "-s") == 0){
+        uefi_rt->ResetSystem(EfiResetShutdown, EFI_SUCCESS, 0, nullptr);
+      }else{
+        PrintToFD(*files_[1], "Usage: power [-r|-s]\n");
+      }
+    }else{
+      PrintToFD(*files_[1], "Usage: power [-r|-s]\n");
+    }
   } else if (strcmp(command, "lsusb") == 0) {
     auto devmgr = usb::xhci::controller->DeviceManager();
     for (int slot = 1; slot < 256; ++slot) {
