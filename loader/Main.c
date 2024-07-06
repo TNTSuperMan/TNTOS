@@ -63,9 +63,6 @@ EFI_STATUS SaveMemoryMap(struct MemoryMap* map, EFI_FILE_PROTOCOL* file) {
     return status;
   }
 
-  Print(L"map->buffer = %08lx, map->map_size = %08lx\n",
-      map->buffer, map->map_size);
-
   EFI_PHYSICAL_ADDRESS iter;
   int i;
   for (iter = (EFI_PHYSICAL_ADDRESS)map->buffer, i = 0;
@@ -269,7 +266,7 @@ EFI_STATUS EFIAPI UefiMain(
     EFI_SYSTEM_TABLE* system_table) {
   EFI_STATUS status;
 
-  Print(L"Hello, Mikan World!\n");
+  Print(L"Loading TNTOS...\n");
 
   CHAR8 memmap_buf[4096 * 4];
   struct MemoryMap memmap = {sizeof(memmap_buf), memmap_buf, 0, 0, 0, 0};
@@ -278,6 +275,7 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to get memory map: %r\n", status);
     Halt();
   }
+  Print(L"success to get memory map\n");
 
   EFI_FILE_PROTOCOL* root_dir;
   status = OpenRootDir(image_handle, &root_dir);
@@ -285,6 +283,7 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to open root directory: %r\n", status);
     Halt();
   }
+  Print(L"success to open root directory\n");
 
   EFI_FILE_PROTOCOL* memmap_file;
   status = root_dir->Open(
@@ -305,6 +304,7 @@ EFI_STATUS EFIAPI UefiMain(
       Halt();
     }
   }
+  Print(L"success to save memory map\n");
 
   EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
   status = OpenGOP(image_handle, &gop);
@@ -312,21 +312,7 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to open GOP: %r\n", status);
     Halt();
   }
-
-  Print(L"Resolution: %ux%u, Pixel Format: %s, %u pixels/line\n",
-      gop->Mode->Info->HorizontalResolution,
-      gop->Mode->Info->VerticalResolution,
-      GetPixelFormatUnicode(gop->Mode->Info->PixelFormat),
-      gop->Mode->Info->PixelsPerScanLine);
-  Print(L"Frame Buffer: 0x%0lx - 0x%0lx, Size: %lu bytes\n",
-      gop->Mode->FrameBufferBase,
-      gop->Mode->FrameBufferBase + gop->Mode->FrameBufferSize,
-      gop->Mode->FrameBufferSize);
-
-  UINT8* frame_buffer = (UINT8*)gop->Mode->FrameBufferBase;
-  for (UINTN i = 0; i < gop->Mode->FrameBufferSize; ++i) {
-    frame_buffer[i] = 255;
-  }
+  Print(L"success to open GOP\n");
 
   EFI_FILE_PROTOCOL* kernel_file;
   status = root_dir->Open(
@@ -336,6 +322,7 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to open file '\\kernel.elf': %r\n", status);
     Halt();
   }
+  Print(L"success to open file `\\kernel.elf`\n");
 
   VOID* kernel_buffer;
   status = ReadFile(kernel_file, &kernel_buffer);
@@ -355,15 +342,16 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to allocate pages: %r\n", status);
     Halt();
   }
+  Print(L"success to allocate pages\n");
 
   CopyLoadSegments(kernel_ehdr);
-  Print(L"Kernel: 0x%0lx - 0x%0lx\n", kernel_first_addr, kernel_last_addr);
 
   status = gBS->FreePool(kernel_buffer);
   if (EFI_ERROR(status)) {
     Print(L"failed to free pool: %r\n", status);
     Halt();
   }
+  Print(L"success to free pool\n");
 
   VOID* volume_image;
 
@@ -377,6 +365,7 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to read volume file: %r\n", status);
       Halt();
     }
+    Print(L"success to read volume file\n");
   } else {
     EFI_BLOCK_IO_PROTOCOL* block_io;
     status = OpenBlockIoProtocolForLoadedImage(image_handle, &block_io);
@@ -384,6 +373,7 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to open Block I/O Protocol: %r\n", status);
       Halt();
     }
+    Print(L"success to open Block I/O Protocol\n");
 
     EFI_BLOCK_IO_MEDIA* media = block_io->Media;
     UINTN volume_bytes = (UINTN)media->BlockSize * (media->LastBlock + 1);
@@ -391,14 +381,12 @@ EFI_STATUS EFIAPI UefiMain(
       volume_bytes = 32 * 1024 * 1024;
     }
 
-    Print(L"Reading %lu bytes (Present %d, BlockSize %u, LastBlock %u)\n",
-        volume_bytes, media->MediaPresent, media->BlockSize, media->LastBlock);
-
     status = ReadBlocks(block_io, media->MediaId, volume_bytes, &volume_image);
     if (EFI_ERROR(status)) {
       Print(L"failed to read blocks: %r\n", status);
       Halt();
     }
+      Print(L"success to read blocks\n");
   }
 
   struct FrameBufferConfig config = {
@@ -452,8 +440,6 @@ EFI_STATUS EFIAPI UefiMain(
                               EFI_RUNTIME_SERVICES*);
   EntryPointType* entry_point = (EntryPointType*)entry_addr;
   entry_point(&config, &memmap, acpi_table, volume_image, gRT);
-
-  Print(L"All done\n");
 
   while (1);
   return EFI_SUCCESS;
