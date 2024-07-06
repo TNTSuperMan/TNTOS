@@ -35,7 +35,17 @@ int main(int argc, char** argv) {
     SyscallWinDrawLine(layer_id, x1, y1, x1 + x, y1 - y, Color(deg + 90));
   }
 
-  WaitEvent();
-  SyscallCloseWindow(layer_id);
+  AppEvent events[1];
+  while (true) {
+    auto [ n, err ] = SyscallReadEvent(events, 1);
+    if (err) {
+      fprintf(stderr, "ReadEvent failed: %s\n", strerror(err));
+      return -1;
+    }
+    if (events[0].type == AppEvent::kQuit) {
+      SyscallCloseWindow(layer_id);
+      return 0;
+    }
+  }
   return 0;
 }
