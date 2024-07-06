@@ -34,5 +34,8 @@ int main(int argc, char** argv) {
     SyscallWinDrawLine(layer_id, x0, y0, x0 + x, y0 + y, Color(deg));
     SyscallWinDrawLine(layer_id, x1, y1, x1 + x, y1 - y, Color(deg + 90));
   }
+
+  WaitEvent();
+  SyscallCloseWindow(layer_id);
   return 0;
 }
