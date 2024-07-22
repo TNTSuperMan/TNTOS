@@ -45,8 +45,6 @@ int main(int argc, char** argv) {
       SyscallWinFillRectangle(layer_id | LAYER_NO_REDRAW,
           4, 24, kCanvasSize, kCanvasSize, 0xffffff);
       DrawEye(layer_id, arg.x, arg.y, 0x000000);
-    } else {
-      printf("unknown event: type = %d\n", events[0].type);
     }
   }
   SyscallCloseWindow(layer_id);

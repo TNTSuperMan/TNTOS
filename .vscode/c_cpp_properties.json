@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "~/osbook/devenv/x86_64-elf/include/**",
+                "~/edk2/MdePkg/Include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

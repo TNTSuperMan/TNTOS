@@ -44,21 +44,29 @@ void FillRectangle(PixelWriter& writer, const Vector2D<int>& pos,
 void DrawDesktop(PixelWriter& writer) {
   const auto width = writer.Width();
   const auto height = writer.Height();
-  FillRectangle(writer,
+  FillRectangle(writer, //Background
                 {0, 0},
                 {width, height - 50},
                 kDesktopBGColor);
-  FillRectangle(writer,
+  FillRectangle(writer, //Tab Bar
                 {0, height - 50},
                 {width, 50},
                 {1, 8, 17});
-  FillRectangle(writer,
+  FillRectangle(writer, //Home Box
                 {0, height - 50},
                 {width / 5, 50},
                 {80, 80, 80});
-  DrawRectangle(writer,
+  FillRectangle(writer, //T _
                 {10, height - 40},
-                {30, 30},
+                {30, 10},
+                {160, 160, 160});
+  FillRectangle(writer, //T |
+                {20, height - 30},
+                {10, 20},
+                {160, 160, 160});
+  DrawRectangle(writer, //Home Border
+                {5, height - 45},
+                {40, 40},
                 {160, 160, 160});
 }
 
