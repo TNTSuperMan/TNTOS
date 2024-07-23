@@ -19,5 +19,5 @@ https://github.com/TNTSuperMan/TNTOS/commits/master/
 使っているフォントライブラリです。
 ### libcxx (/license/licens~1.lib)
 使っているライブラリです。
-## newlib (/license/licens~1.new)
+### newlib (/license/licens~1.new)
 使っているライブラリです。
