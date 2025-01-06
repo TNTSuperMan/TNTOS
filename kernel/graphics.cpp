@@ -22,6 +22,9 @@ void BGRResv8BitPerColorPixelWriter::Write(Vector2D<int> pos, const PixelColor& 
 
 void DrawRectangle(PixelWriter& writer, const Vector2D<int>& pos,
                    const Vector2D<int>& size, const PixelColor& c) {
+  if(writer.Width() <= pos.x + size.x || writer.Height() <= pos.y + size.y){
+    return;
+  }
   for (int dx = 0; dx < size.x; ++dx) {
     writer.Write(pos + Vector2D<int>{dx, 0}, c);
     writer.Write(pos + Vector2D<int>{dx, size.y - 1}, c);
@@ -36,7 +39,9 @@ void FillRectangle(PixelWriter& writer, const Vector2D<int>& pos,
                    const Vector2D<int>& size, const PixelColor& c) {
   for (int dy = 0; dy < size.y; ++dy) {
     for (int dx = 0; dx < size.x; ++dx) {
-      writer.Write(pos + Vector2D<int>{dx, dy}, c);
+      Vector2D p = pos + Vector2D<int>{dx, dy};
+      if(writer.Width() > p.x && writer.Height() > p.y)
+        writer.Write(p, c);
     }
   }
 }
