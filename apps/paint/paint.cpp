@@ -37,8 +37,6 @@ int main(int argc, char** argv) {
         press = arg.press;
         SyscallWinFillRectangle(layer_id, arg.x, arg.y, 1, 1, 0x000000);
       }
-    } else {
-      printf("unknown event: type = %d\n", events[0].type);
     }
   }
 
