@@ -303,8 +303,8 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to close memory map: %r\n", status);
       Halt();
     }
+    Print(L"success to save memory map\n");
   }
-  Print(L"success to save memory map\n");
 
   EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
   status = OpenGOP(image_handle, &gop);
