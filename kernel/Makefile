@@ -21,12 +21,10 @@ all: $(TARGET)
 
 .PHONY: clean
 clean:
-	rm -rf *.o
-	rm -rf .*.d
+	../make.ts clean
 
 kernel.elf: $(OBJS) Makefile
-	ld.lld $(LDFLAGS) -o kernel.elf $(OBJS) -lc -lc++ -lc++abi -lm \
-	-lfreetype
+	../make.ts link
 
 %.o: %.cpp Makefile
 	clang++ $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
