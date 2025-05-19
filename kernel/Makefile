@@ -38,11 +38,9 @@ kernel.elf: $(OBJS) Makefile
 %.o: %.asm Makefile
 	nasm -f elf64 -o $@ $<
 
-graphic/hankaku.bin: graphic/hankaku.txt
-	../tools/makefont.py -o $@ $<
-
-graphic/hankaku.o: graphic/hankaku.bin
-	objcopy -I binary -O elf64-x86-64 -B i386:x86-64 $< $@
+graphic/hankaku.o: graphic/hankaku.txt
+	python3 ../tools/makefont.py -o graphic/hankaku.bin $<
+	objcopy -I binary -O elf64-x86-64 -B i386:x86-64 graphic/hankaku.bin $@
 
 .%.d: %.bin
 	touch $@
