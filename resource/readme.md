@@ -2,7 +2,7 @@
 TNTOSはTNTSuperManがMikanOSを改造して作ったOSです。  
 よろしくお願いします。
 ## ライセンス
-### Mikanos (/license/licens~1.mik)
+### Mikanos (/license/mikanos.txt)
 このシステムの元とapps内の  
 blocks、cp、cube、eye、grep、gview、hex2bin、  
 lines、mandel、more、paint、readfile、  
@@ -13,11 +13,11 @@ rpn、sort、stars、tedit、timer、tview
 
 https://github.com/TNTSuperMan/TNTOS/commits/master/
 
-### IPAFont (/license/ipa_fo~1.txt)
+### IPAFont (/license/ipafont.txt)
 使っているフォントです。
-### freetype (/license/licens~1.fre)
+### freetype (/license/freetype.txt)
 使っているフォントライブラリです。
-### libcxx (/license/licens~1.lib)
+### libcxx (/license/libcxx.txt)
 使っているライブラリです。
-### newlib (/license/licens~1.new)
+### newlib (/license/newlib.txt)
 使っているライブラリです。
