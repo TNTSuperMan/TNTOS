@@ -12,18 +12,18 @@
 #include "io/fat.hpp"
 #include "logger.hpp"
 
-extern const uint8_t _binary_hankaku_bin_start;
-extern const uint8_t _binary_hankaku_bin_end;
-extern const uint8_t _binary_hankaku_bin_size;
+extern const uint8_t _binary_graphic_hankaku_bin_start;
+extern const uint8_t _binary_graphic_hankaku_bin_end;
+extern const uint8_t _binary_graphic_hankaku_bin_size;
 
 namespace {
 
 const uint8_t* GetFont(char c) {
   auto index = 16 * static_cast<unsigned int>(c);
-  if (index >= reinterpret_cast<uintptr_t>(&_binary_hankaku_bin_size)) {
+  if (index >= reinterpret_cast<uintptr_t>(&_binary_graphic_hankaku_bin_size)) {
     return nullptr;
   }
-  return &_binary_hankaku_bin_start + index;
+  return &_binary_graphic_hankaku_bin_start + index;
 }
 
 FT_Library ft_library;
