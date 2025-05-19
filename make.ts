@@ -16,7 +16,7 @@ switch(option){
   case "link":
     const objects = readdirSync(".", { recursive: true })
       .filter(e=>typeof e == "string" && e.endsWith(".o")) as string[];
-    await spawn({cmd:["ld.lld", process.env.LDFLAGS??"",
+    await spawn({cmd:["ld.lld", ...(process.env.LDFLAGS??"").split(" "),
         "--entry", "KernelMain",
         "-z", "norelro",
         "--image-base", "0x100000",
