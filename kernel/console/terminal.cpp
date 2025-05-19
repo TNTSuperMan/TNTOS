@@ -589,18 +589,10 @@ void Terminal::ExecuteLine() {
         PrintToFD(*files_[1], "-%02d%02d\n", -t.TimeZone / 60, -t.TimeZone % 60);
       }
     }
-  } else if (strcmp(command, "power") == 0) {
-    if(first_arg){
-      if(strcmp(first_arg, "-r") == 0){
-        uefi_rt->ResetSystem(EfiResetWarm, EFI_SUCCESS, 0, nullptr);
-      }else if(strcmp(first_arg, "-s") == 0){
-        uefi_rt->ResetSystem(EfiResetShutdown, EFI_SUCCESS, 0, nullptr);
-      }else{
-        PrintToFD(*files_[1], "Usage: power [-r|-s]\n");
-      }
-    }else{
-      PrintToFD(*files_[1], "Usage: power [-r|-s]\n");
-    }
+  } else if (strcmp(command, "shutdown") == 0) {
+    uefi_rt->ResetSystem(EfiResetShutdown, EFI_SUCCESS, 0, nullptr);
+  } else if (strcmp(command, "reboot") == 0 ) {
+    uefi_rt->ResetSystem(EfiResetWarm, EFI_SUCCESS, 0, nullptr);
   } else if (strcmp(command, "lsusb") == 0) {
     auto devmgr = usb::xhci::controller->DeviceManager();
     for (int slot = 1; slot < 256; ++slot) {
