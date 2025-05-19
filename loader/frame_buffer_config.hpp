@@ -1,1 +1,1 @@
-#include "../kernel/frame_buffer_config.hpp"
+#include "../kernel/io/frame_buffer_config.hpp"

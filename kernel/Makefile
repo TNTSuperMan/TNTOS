@@ -45,10 +45,10 @@ kernel.elf: $(OBJS) Makefile
 %.o: %.asm Makefile
 	nasm -f elf64 -o $@ $<
 
-hankaku.bin: hankaku.txt
+graphic/hankaku.bin: graphic/hankaku.txt
 	../tools/makefont.py -o $@ $<
 
-hankaku.o: hankaku.bin
+graphic/hankaku.o: graphic/hankaku.bin
 	objcopy -I binary -O elf64-x86-64 -B i386:x86-64 $< $@
 
 .%.d: %.bin

@@ -1,1 +1,1 @@
-#include "../kernel/memory_map.hpp"
+#include "../kernel/memory/memory_map.hpp"
