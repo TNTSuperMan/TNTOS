@@ -11,7 +11,7 @@ switch(option){
     await Promise.all(readdirSync(".", { recursive: true }).map(e=>{
       if(typeof e != "string") return;
       if(e.endsWith(".o") || e.endsWith(".d"))
-        return rm(resolve(__dirname, "kernel", e));
+        return rm(e);
     })); break;
   case "link":
     const objects = readdirSync(".", { recursive: true })
