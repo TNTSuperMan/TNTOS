@@ -1,5 +1,5 @@
 TARGET = kernel.elf
-OBJS = $(wildcard ./**/*.o)
+OBJS := $(shell ../make.ts objects)
 DEPENDS = $(join $(dir $(OBJS)),$(addprefix .,$(notdir $(OBJS:.o=.d))))
 
 CPPFLAGS += -I.

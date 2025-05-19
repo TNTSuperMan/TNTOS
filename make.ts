@@ -2,7 +2,7 @@
 import { readdirSync } from "fs"
 import { rm } from "fs/promises"
 import { resolve } from "path"
-import { spawn } from "bun"
+import { Glob, spawn, stdout } from "bun"
 
 const [,, option] = process.argv;
 
@@ -24,5 +24,8 @@ switch(option){
         "-o", "kernel.elf",
         ...objects,
         "-lc", "-lc++", "-lc++abi", "-lm", "-lfreetype"]}).exited;
+    break;
+  case "objects":
+    stdout.write(Array.from(new Glob("**/*.{c,cpp}").scanSync()).map(e=>e.replace(/\.[\w]*$/,".o")).join(" "));
     break;
 }
