@@ -8,14 +8,11 @@ const [,, option] = process.argv;
 
 switch(option){
   case "clean":
-    await Promise.all(readdirSync(".", { recursive: true }).map(e=>{
-      if(typeof e != "string") return;
-      if(e.endsWith(".o") || e.endsWith(".d"))
-        return rm(e);
-    })); break;
+    for await (const e of new Glob("**/*.o").scan()){
+      rm(e);
+    } break;
   case "link":
-    const objects = readdirSync(".", { recursive: true })
-      .filter(e=>typeof e == "string" && e.endsWith(".o")) as string[];
+    const objects = Array.from(new Glob("**/*.o").scanSync());
     await spawn({cmd:["ld.lld", ...(process.env.LDFLAGS??"").split(" "),
         "--entry", "KernelMain",
         "-z", "norelro",
