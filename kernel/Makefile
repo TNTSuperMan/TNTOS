@@ -1,5 +1,5 @@
 TARGET = kernel.elf
-OBJS := $(shell ../make.ts objects)
+OBJS = $(shell ../make.ts objects) legacy/asmfunc.o graphic/hankaku.o
 DEPENDS = $(join $(dir $(OBJS)),$(addprefix .,$(notdir $(OBJS:.o=.d))))
 
 CPPFLAGS += -I.
