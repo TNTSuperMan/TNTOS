@@ -1,5 +1,5 @@
 /kernel.elf
-/hankaku.bin
+hankaku.bin
 *.o
 .*.d
 *.swp
