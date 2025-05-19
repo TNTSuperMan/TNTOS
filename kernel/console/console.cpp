@@ -7,8 +7,8 @@
 #include "console.hpp"
 
 #include <cstring>
-#include "font.hpp"
-#include "layer.hpp"
+#include "graphic/font.hpp"
+#include "graphic/layer.hpp"
 
 Console::Console(const PixelColor& fg_color, const PixelColor& bg_color)
     : writer_{nullptr}, window_{}, fg_color_{fg_color}, bg_color_{bg_color},

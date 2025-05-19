@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include "usb/device.hpp"
-#include "logger.hpp"
+#include "console/logger.hpp"
 
 namespace usb {
   HIDBaseDriver::HIDBaseDriver(Device* dev, int interface_index,

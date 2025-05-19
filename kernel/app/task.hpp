@@ -15,9 +15,9 @@
 #include <vector>
 
 #include "error.hpp"
-#include "message.hpp"
-#include "paging.hpp"
-#include "fat.hpp"
+#include "app/message.hpp"
+#include "memory/paging.hpp"
+#include "io/fat.hpp"
 
 struct TaskContext {
   uint64_t cr3, rip, rflags, reserved1; // offset 0x00

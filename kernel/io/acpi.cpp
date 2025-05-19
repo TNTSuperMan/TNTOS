@@ -2,8 +2,8 @@
 
 #include <cstring>
 #include <cstdlib>
-#include "asmfunc.h"
-#include "logger.hpp"
+#include "legacy/asmfunc.h"
+#include "console/logger.hpp"
 
 namespace {
 

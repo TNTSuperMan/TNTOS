@@ -11,11 +11,11 @@
 #include <map>
 #include <memory>
 #include <optional>
-#include "window.hpp"
-#include "task.hpp"
-#include "layer.hpp"
-#include "fat.hpp"
-#include "graphics.hpp"
+#include "app/window.hpp"
+#include "app/task.hpp"
+#include "graphic/layer.hpp"
+#include "io/fat.hpp"
+#include "graphic/graphics.hpp"
 
 struct AppLoadInfo {
   uint64_t vaddr_end, entry;

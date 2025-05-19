@@ -1,9 +1,9 @@
 #include "layer.hpp"
 
 #include <algorithm>
-#include "console.hpp"
-#include "logger.hpp"
-#include "task.hpp"
+#include "console/console.hpp"
+#include "console/logger.hpp"
+#include "app/task.hpp"
 
 namespace {
   template <class T, class U>

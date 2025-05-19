@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "graphics.hpp"
+#include "graphic/graphics.hpp"
 
 const int kMouseCursorWidth = 15;
 const int kMouseCursorHeight = 24;

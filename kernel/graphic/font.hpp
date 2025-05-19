@@ -6,7 +6,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "graphics.hpp"
+#include "graphic/graphics.hpp"
 #include "error.hpp"
 
 void WriteAscii(PixelWriter& writer, Vector2D<int> pos, char c, const PixelColor& color);

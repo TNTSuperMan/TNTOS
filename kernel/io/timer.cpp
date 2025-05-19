@@ -1,8 +1,8 @@
 #include "timer.hpp"
 
-#include "acpi.hpp"
-#include "interrupt.hpp"
-#include "task.hpp"
+#include "io/acpi.hpp"
+#include "legacy/interrupt.hpp"
+#include "app/task.hpp"
 
 namespace {
   const uint32_t kCountMax = 0xffffffffu;

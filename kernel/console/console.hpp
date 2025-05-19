@@ -1,8 +1,8 @@
 #pragma once
 
 #include <memory>
-#include "graphics.hpp"
-#include "window.hpp"
+#include "graphic/graphics.hpp"
+#include "app/window.hpp"
 
 class Console {
  public:

@@ -9,7 +9,7 @@
 #include <array>
 #include <cstdint>
 
-#include "x86_descriptor.hpp"
+#include "legacy/x86_descriptor.hpp"
 
 union SegmentDescriptor {
   uint64_t data;

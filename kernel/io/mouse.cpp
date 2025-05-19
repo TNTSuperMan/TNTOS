@@ -2,10 +2,10 @@
 
 #include <limits>
 #include <memory>
-#include "graphics.hpp"
-#include "layer.hpp"
+#include "graphic/graphics.hpp"
+#include "graphic/layer.hpp"
 #include "usb/classdriver/mouse.hpp"
-#include "task.hpp"
+#include "app/task.hpp"
 
 namespace {
   const char mouse_cursor_shape[kMouseCursorHeight][kMouseCursorWidth + 1] = {

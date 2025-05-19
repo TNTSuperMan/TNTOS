@@ -1,10 +1,10 @@
 #include "usb/xhci/xhci.hpp"
 
 #include <cstring>
-#include "logger.hpp"
-#include "pci.hpp"
-#include "interrupt.hpp"
-#include "timer.hpp"
+#include "console/logger.hpp"
+#include "io/pci.hpp"
+#include "legacy/interrupt.hpp"
+#include "io/timer.hpp"
 #include "usb/setupdata.hpp"
 #include "usb/device.hpp"
 #include "usb/descriptor.hpp"

@@ -8,12 +8,12 @@
 
 #include <csignal>
 
-#include "asmfunc.h"
-#include "segment.hpp"
-#include "timer.hpp"
-#include "task.hpp"
-#include "graphics.hpp"
-#include "font.hpp"
+#include "legacy/asmfunc.h"
+#include "memory/segment.hpp"
+#include "io/timer.hpp"
+#include "app/task.hpp"
+#include "graphic/graphics.hpp"
+#include "graphic/font.hpp"
 
 std::array<InterruptDescriptor, 256> idt;
 

@@ -1,9 +1,9 @@
 #include "segment.hpp"
 
-#include "asmfunc.h"
-#include "interrupt.hpp"
-#include "logger.hpp"
-#include "memory_manager.hpp"
+#include "legacy/asmfunc.h"
+#include "legacy/interrupt.hpp"
+#include "console/logger.hpp"
+#include "memory/memory_manager.hpp"
 
 namespace {
   std::array<SegmentDescriptor, 7> gdt;

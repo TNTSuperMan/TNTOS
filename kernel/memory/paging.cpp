@@ -2,11 +2,11 @@
 
 #include <array>
 
-#include "asmfunc.h"
-#include "memory_manager.hpp"
-#include "task.hpp"
+#include "legacy/asmfunc.h"
+#include "memory/memory_manager.hpp"
+#include "app/task.hpp"
 
-#include "logger.hpp"
+#include "console/logger.hpp"
 
 namespace {
   const uint64_t kPageSize4K = 4096;

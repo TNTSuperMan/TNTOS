@@ -10,7 +10,7 @@
 #include <limits>
 
 #include "error.hpp"
-#include "memory_map.hpp"
+#include "memory/memory_map.hpp"
 
 namespace {
   constexpr unsigned long long operator""_KiB(unsigned long long kib) {

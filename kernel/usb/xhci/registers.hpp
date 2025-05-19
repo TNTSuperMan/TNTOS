@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "register.hpp"
+#include "memory/register.hpp"
 
 namespace usb::xhci {
   union HCSPARAMS1_Bitmap {

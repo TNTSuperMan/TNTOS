@@ -6,15 +6,15 @@
 #include <cmath>
 #include <fcntl.h>
 
-#include "asmfunc.h"
-#include "msr.hpp"
-#include "logger.hpp"
-#include "task.hpp"
-#include "terminal.hpp"
-#include "font.hpp"
-#include "timer.hpp"
-#include "keyboard.hpp"
-#include "app_event.hpp"
+#include "legacy/asmfunc.h"
+#include "legacy/msr.hpp"
+#include "console/logger.hpp"
+#include "app/task.hpp"
+#include "console/terminal.hpp"
+#include "graphic/font.hpp"
+#include "io/timer.hpp"
+#include "io/keyboard.hpp"
+#include "app/app_event.hpp"
 
 namespace syscall {
   struct Result {

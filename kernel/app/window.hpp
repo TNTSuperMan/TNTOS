@@ -9,8 +9,8 @@
 #include <vector>
 #include <optional>
 #include <string>
-#include "graphics.hpp"
-#include "frame_buffer.hpp"
+#include "graphic/graphics.hpp"
+#include "io/frame_buffer.hpp"
 
 enum class WindowRegion {
   kTitleBar,

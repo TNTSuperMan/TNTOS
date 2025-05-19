@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdio>
 
-#include "console.hpp"
+#include "console/console.hpp"
 
 namespace {
   LogLevel log_level = kWarn;

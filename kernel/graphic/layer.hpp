@@ -10,9 +10,9 @@
 #include <map>
 #include <vector>
 
-#include "graphics.hpp"
-#include "window.hpp"
-#include "message.hpp"
+#include "graphic/graphics.hpp"
+#include "app/window.hpp"
+#include "app/message.hpp"
 
 /** @brief Layer は 1 つの層を表す。
  *

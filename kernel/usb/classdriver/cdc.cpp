@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <iterator>
 
-#include "logger.hpp"
+#include "console/logger.hpp"
 #include "usb/device.hpp"
 
 namespace usb::cdc {

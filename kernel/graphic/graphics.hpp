@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <cstdint>
-#include "frame_buffer_config.hpp"
+#include "io/frame_buffer_config.hpp"
 
 struct PixelColor {
   uint8_t r, g, b;

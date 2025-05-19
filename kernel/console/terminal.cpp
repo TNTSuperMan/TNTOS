@@ -6,17 +6,17 @@
 #include <limits>
 #include <vector>
 
-#include "font.hpp"
-#include "layer.hpp"
-#include "pci.hpp"
-#include "asmfunc.h"
-#include "elf.hpp"
-#include "memory_manager.hpp"
-#include "paging.hpp"
-#include "timer.hpp"
-#include "keyboard.hpp"
-#include "logger.hpp"
-#include "uefi.hpp"
+#include "graphic/font.hpp"
+#include "graphic/layer.hpp"
+#include "io/pci.hpp"
+#include "legacy/asmfunc.h"
+#include "legacy/elf.hpp"
+#include "memory/memory_manager.hpp"
+#include "memory/paging.hpp"
+#include "io/timer.hpp"
+#include "io/keyboard.hpp"
+#include "console/logger.hpp"
+#include "legacy/uefi.hpp"
 #include "usb/classdriver/cdc.hpp"
 #include "usb/xhci/xhci.hpp"
 

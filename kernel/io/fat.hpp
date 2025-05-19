@@ -10,7 +10,7 @@
 #include <cstddef>
 
 #include "error.hpp"
-#include "file.hpp"
+#include "io/file.hpp"
 
 namespace fat {
 

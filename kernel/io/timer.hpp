@@ -4,7 +4,7 @@
 #include <queue>
 #include <vector>
 #include <limits>
-#include "message.hpp"
+#include "app/message.hpp"
 
 void InitializeLAPICTimer();
 void StartLAPICTimer();

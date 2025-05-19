@@ -1,8 +1,8 @@
 #include "task.hpp"
 
-#include "asmfunc.h"
-#include "segment.hpp"
-#include "timer.hpp"
+#include "legacy/asmfunc.h"
+#include "memory/segment.hpp"
+#include "io/timer.hpp"
 
 namespace {
   template <class T, class U>

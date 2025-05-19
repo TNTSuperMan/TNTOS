@@ -10,8 +10,8 @@
 #include <cstdint>
 #include <deque>
 
-#include "x86_descriptor.hpp"
-#include "message.hpp"
+#include "legacy/x86_descriptor.hpp"
+#include "app/message.hpp"
 
 union InterruptDescriptorAttribute {
   uint16_t data;

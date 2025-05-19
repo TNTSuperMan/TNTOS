@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "usb/classdriver/keyboard.hpp"
-#include "task.hpp"
+#include "app/task.hpp"
 
 namespace {
 

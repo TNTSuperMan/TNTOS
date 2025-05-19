@@ -1,7 +1,7 @@
 #include "memory_manager.hpp"
 
 #include <bitset>
-#include "logger.hpp"
+#include "console/logger.hpp"
 
 BitmapMemoryManager::BitmapMemoryManager()
   : alloc_map_{}, range_begin_{FrameID{0}}, range_end_{FrameID{kFrameCount}} {

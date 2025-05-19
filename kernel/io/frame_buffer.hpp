@@ -3,8 +3,8 @@
 #include <vector>
 #include <memory>
 
-#include "frame_buffer_config.hpp"
-#include "graphics.hpp"
+#include "io/frame_buffer_config.hpp"
+#include "graphic/graphics.hpp"
 #include "error.hpp"
 
 class FrameBuffer {
