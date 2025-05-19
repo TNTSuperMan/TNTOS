@@ -20,7 +20,7 @@
 #include "graphic/font.hpp"
 #include "console/console.hpp"
 #include "io/pci.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "usb/xhci/xhci.hpp"
 #include "legacy/interrupt.hpp"
 #include "legacy/asmfunc.h"

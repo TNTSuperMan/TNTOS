@@ -8,13 +8,13 @@
 
 #include "legacy/asmfunc.h"
 #include "legacy/msr.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "app/task.hpp"
 #include "console/terminal.hpp"
 #include "graphic/font.hpp"
 #include "io/timer.hpp"
 #include "io/keyboard.hpp"
-#include "app/app_event.hpp"
+#include "app_event.hpp"
 
 namespace syscall {
   struct Result {

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "usb/memory.hpp"
 #include "usb/device.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 
 namespace usb {
   HIDMouseDriver::HIDMouseDriver(Device* dev, int interface_index)

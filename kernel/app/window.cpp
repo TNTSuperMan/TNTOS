@@ -1,6 +1,6 @@
 #include "window.hpp"
 
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "graphic/font.hpp"
 
 namespace {

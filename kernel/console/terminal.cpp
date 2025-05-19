@@ -15,7 +15,7 @@
 #include "memory/paging.hpp"
 #include "io/timer.hpp"
 #include "io/keyboard.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "legacy/uefi.hpp"
 #include "usb/classdriver/cdc.hpp"
 #include "usb/xhci/xhci.hpp"

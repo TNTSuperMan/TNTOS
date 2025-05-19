@@ -6,7 +6,7 @@
 #include "memory/memory_manager.hpp"
 #include "app/task.hpp"
 
-#include "console/logger.hpp"
+#include "logger.hpp"
 
 namespace {
   const uint64_t kPageSize4K = 4096;

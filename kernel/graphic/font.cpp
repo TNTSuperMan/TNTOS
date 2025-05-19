@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "io/fat.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 
 extern const uint8_t _binary_hankaku_bin_start;
 extern const uint8_t _binary_hankaku_bin_end;

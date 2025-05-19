@@ -1,7 +1,7 @@
 #include "usb/xhci/xhci.hpp"
 
 #include <cstring>
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "io/pci.hpp"
 #include "legacy/interrupt.hpp"
 #include "io/timer.hpp"

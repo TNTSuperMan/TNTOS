@@ -2,7 +2,7 @@
 
 #include "legacy/asmfunc.h"
 #include "legacy/interrupt.hpp"
-#include "console/logger.hpp"
+#include "logger.hpp"
 #include "memory/memory_manager.hpp"
 
 namespace {

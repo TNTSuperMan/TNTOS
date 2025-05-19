@@ -6,7 +6,7 @@
 #include "usb/classdriver/keyboard.hpp"
 #include "usb/classdriver/mouse.hpp"
 
-#include "console/logger.hpp"
+#include "logger.hpp"
 
 namespace {
   class ConfigurationDescriptorReader {
