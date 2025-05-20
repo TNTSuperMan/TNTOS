@@ -4,6 +4,8 @@
 #include "../syscall.h"
 #include "elk.h"
 
+char errbuf[256];
+
 jsval_t print(js *js, jsval_t *args, int nargs){
   for(int i = 0;i < nargs;i++){
     printf("%s\n", js_str(js, args[i]));
@@ -57,7 +59,6 @@ jsval_t writeFile(js *js, jsval_t *args, int nargs){
   char* path = js_getstr(js, args[0], &len);
   FILE* fp = fopen(path, "w");
   if(fp == nullptr){
-    char errbuf[256];
     sprintf(errbuf, "failed to open: %s", path);
     return js_mkerr(js, errbuf);
   }
@@ -66,7 +67,6 @@ jsval_t writeFile(js *js, jsval_t *args, int nargs){
   size_t res = fwrite(input, 1, len, fp);
   fclose(fp);
   if(res != len){
-    char errbuf[256];
     sprintf(errbuf, "failed to write: %s", path);
     return js_mkerr(js, errbuf);
   }
