@@ -41,6 +41,38 @@ jsval_t readFile(js *js, jsval_t *args, int nargs){
   return js_mkstr(js, reinterpret_cast<const void*>(res.value), len);
 }
 
+jsval_t writeFile(js *js, jsval_t *args, int nargs){
+  if(nargs == 0){
+    return js_mkerr(js, "path must be a string");
+  }else if(nargs == 1){
+    if(js_type(args[0]) != JS_STR){
+      return js_mkerr(js, "path must be a string");
+    }else{
+      return js_mkerr(js, "input must be a string");
+    }
+  }else if(js_type(args[1]) != JS_STR){
+    return js_mkerr(js, "input must be a string");
+  }
+  size_t len;
+  char* path = js_getstr(js, args[0], &len);
+  FILE* fp = fopen(path, "w");
+  if(fp == nullptr){
+    char errbuf[256];
+    sprintf(errbuf, "failed to open: %s", path);
+    return js_mkerr(js, errbuf);
+  }
+
+  char* input = js_getstr(js, args[1], &len);
+  size_t res = fwrite(input, 1, len, fp);
+  fclose(fp);
+  if(res != len){
+    char errbuf[256];
+    sprintf(errbuf, "failed to write: %s", path);
+    return js_mkerr(js, errbuf);
+  }
+  return js_mkundef();
+}
+
 int main(int argc, char** argv) {
   if(argc != 2){
     printf("usage: js [path]\n");
@@ -68,6 +100,7 @@ int main(int argc, char** argv) {
   js_set(js, global, "print", js_mkfun(print));
   js_set(js, global, "stats", js_mkfun(stats));
   js_set(js, global, "readFile", js_mkfun(readFile));
+  js_set(js, global, "writeFile", js_mkfun(writeFile));
 
   jsval_t val = js_eval(js, script, fs);
 
