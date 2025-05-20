@@ -25,8 +25,36 @@
 extern "C" {
 #endif
 
-struct js;                 // JS engine (opaque)
 typedef uint64_t jsval_t;  // JS value
+typedef uint32_t jsoff_t;
+
+struct js { // JS engine (opaque)
+  jsoff_t css;        // Max observed C stack size
+  jsoff_t lwm;        // JS RAM low watermark: min free RAM observed
+  const char *code;   // Currently parsed code snippet
+  char errmsg[33];    // Error message placeholder
+  uint8_t tok;        // Last parsed token value
+  uint8_t consumed;   // Indicator that last parsed token was consumed
+  uint8_t flags;      // Execution flags, see F_* constants below
+#define F_NOEXEC 1U   // Parse code, but not execute
+#define F_LOOP 2U     // We're inside the loop
+#define F_CALL 4U     // We're inside a function call
+#define F_BREAK 8U    // Exit the loop
+#define F_RETURN 16U  // Return has been executed
+  jsoff_t clen;       // Code snippet length
+  jsoff_t pos;        // Current parsing position
+  jsoff_t toff;       // Offset of the last parsed token
+  jsoff_t tlen;       // Length of the last parsed token
+  jsoff_t nogc;       // Entity offset to exclude from GC
+  jsval_t tval;       // Holds last parsed numeric or string literal value
+  jsval_t scope;      // Current scope
+  uint8_t *mem;       // Available JS memory
+  jsoff_t size;       // Memory size
+  jsoff_t brk;        // Current mem usage boundary
+  jsoff_t gct;        // GC threshold. If brk > gct, trigger GC
+  jsoff_t maxcss;     // Maximum allowed C stack size usage
+  void *cstk;         // C stack pointer at the beginning of js_eval()
+};
 
 struct js *js_create(void *buf, size_t len);         // Create JS instance
 jsval_t js_eval(struct js *, const char *, size_t);  // Execute JS code
