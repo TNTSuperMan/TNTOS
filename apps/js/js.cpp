@@ -11,6 +11,18 @@ jsval_t print(js *js, jsval_t *args, int nargs){
   return js_mkundef();
 }
 
+jsval_t stats(js *js, jsval_t *args, int nargs){
+  size_t total, min, cstacksize;
+  js_stats(js, &total, &min, &cstacksize);
+  
+  jsval_t statobj = js_mkobj(js);
+  js_set(js, statobj, "total", js_mknum(total));
+  js_set(js, statobj, "min", js_mknum(min));
+  js_set(js, statobj, "cstacksize", js_mknum(cstacksize));
+
+  return statobj;
+}
+
 jsval_t readFile(js *js, jsval_t *args, int nargs){
   if(nargs < 1 || js_type(args[0]) != JS_STR){
     return js_mkerr(js, "path must be a string");
@@ -55,6 +67,7 @@ int main(int argc, char** argv) {
   js *js = js_create(mem, sizeof(mem));
 
   js_set(js, js_glob(js), "print", js_mkfun(print));
+  js_set(js, js_glob(js), "stats", js_mkfun(stats));
   js_set(js, js_glob(js), "readFile", js_mkfun(readFile));
 
   jsval_t val = js_eval(js, script, fs);
