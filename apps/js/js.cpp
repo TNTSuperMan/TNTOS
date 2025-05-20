@@ -12,13 +12,11 @@ jsval_t print(js *js, jsval_t *args, int nargs){
 }
 
 jsval_t stats(js *js, jsval_t *args, int nargs){
-  size_t total, min, cstacksize;
-  js_stats(js, &total, &min, &cstacksize);
-  
   jsval_t statobj = js_mkobj(js);
-  js_set(js, statobj, "total", js_mknum(total));
-  js_set(js, statobj, "min", js_mknum(min));
-  js_set(js, statobj, "cstacksize", js_mknum(cstacksize));
+  js_set(js, statobj, "size", js_mknum(js->size));
+  js_set(js, statobj, "lwm", js_mknum(js->lwm));
+  js_set(js, statobj, "css", js_mknum(js->css));
+  js_set(js, statobj, "brk", js_mknum(js->brk));
 
   return statobj;
 }
