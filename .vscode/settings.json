@@ -3,7 +3,9 @@
         "*.embeddedhtml": "html",
         "cstdio": "cpp",
         "algorithm": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "cstring": "cpp",
+        "stdio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
