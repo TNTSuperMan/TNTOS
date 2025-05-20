@@ -65,10 +65,11 @@ int main(int argc, char** argv) {
   
   char mem[4096]; // メモ: oomはメモリ不足例外
   js *js = js_create(mem, sizeof(mem));
+  const jsval_t global = js_glob(js);
 
-  js_set(js, js_glob(js), "print", js_mkfun(print));
-  js_set(js, js_glob(js), "stats", js_mkfun(stats));
-  js_set(js, js_glob(js), "readFile", js_mkfun(readFile));
+  js_set(js, global, "print", js_mkfun(print));
+  js_set(js, global, "stats", js_mkfun(stats));
+  js_set(js, global, "readFile", js_mkfun(readFile));
 
   jsval_t val = js_eval(js, script, fs);
 
