@@ -34,7 +34,11 @@ int main(int argc, char** argv) {
   char mem[1024];
   js *js = js_create(mem, sizeof(mem));
   js_set(js, js_glob(js), "print", js_mkfun(print));
-  js_eval(js, script, fs);
+  jsval_t val = js_eval(js, script, fs);
+
+  if(js_type(val) == JS_ERR){
+    printf("%s\n", js_str(js, val));
+  }
 
   return 0;
 }
