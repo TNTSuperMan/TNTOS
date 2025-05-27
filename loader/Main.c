@@ -268,6 +268,7 @@ EFI_STATUS EFIAPI UefiMain(
 
   Print(L"Loading TNTOS...\n\n");
 
+  Print(L"getting memory map...\n");
   CHAR8 memmap_buf[4096 * 4];
   struct MemoryMap memmap = {sizeof(memmap_buf), memmap_buf, 0, 0, 0, 0};
   status = GetMemoryMap(&memmap);
@@ -275,16 +276,16 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to get memory map: %r\n", status);
     Halt();
   }
-  Print(L"success to get memory map\n");
 
+  Print(L"opening root directory...\n");
   EFI_FILE_PROTOCOL* root_dir;
   status = OpenRootDir(image_handle, &root_dir);
   if (EFI_ERROR(status)) {
     Print(L"failed to open root directory: %r\n", status);
     Halt();
   }
-  Print(L"success to open root directory\n");
 
+  Print(L"saving memory map...\n");
   EFI_FILE_PROTOCOL* memmap_file;
   status = root_dir->Open(
       root_dir, &memmap_file, L"\\memmap",
@@ -303,17 +304,17 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to close memory map: %r\n", status);
       Halt();
     }
-    Print(L"success to save memory map\n");
   }
 
+  Print(L"opening GOP...\n");
   EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
   status = OpenGOP(image_handle, &gop);
   if (EFI_ERROR(status)) {
     Print(L"failed to open GOP: %r\n", status);
     Halt();
   }
-  Print(L"success to open GOP\n");
 
+  Print(L"opening `\\kernel.elf`...\n");
   EFI_FILE_PROTOCOL* kernel_file;
   status = root_dir->Open(
       root_dir, &kernel_file, L"\\kernel.elf",
@@ -322,8 +323,8 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to open file '\\kernel.elf': %r\n", status);
     Halt();
   }
-  Print(L"success to open file `\\kernel.elf`\n");
 
+  Print(L"reading `\\kernel.elf`...\n");
   VOID* kernel_buffer;
   status = ReadFile(kernel_file, &kernel_buffer);
   if (EFI_ERROR(status)) {
@@ -331,6 +332,7 @@ EFI_STATUS EFIAPI UefiMain(
     Halt();
   }
 
+  Print(L"allocating pages...\n");
   Elf64_Ehdr* kernel_ehdr = (Elf64_Ehdr*)kernel_buffer;
   UINT64 kernel_first_addr, kernel_last_addr;
   CalcLoadAddressRange(kernel_ehdr, &kernel_first_addr, &kernel_last_addr);
@@ -342,19 +344,19 @@ EFI_STATUS EFIAPI UefiMain(
     Print(L"failed to allocate pages: %r\n", status);
     Halt();
   }
-  Print(L"success to allocate pages\n");
 
   CopyLoadSegments(kernel_ehdr);
 
+  Print(L"freeing pool...\n");
   status = gBS->FreePool(kernel_buffer);
   if (EFI_ERROR(status)) {
     Print(L"failed to free pool: %r\n", status);
     Halt();
   }
-  Print(L"success to free pool\n");
 
   VOID* volume_image;
 
+  Print(L"opeining Block I/O Protocol...\n");
   EFI_FILE_PROTOCOL* volume_file;
   status = root_dir->Open(
       root_dir, &volume_file, L"\\fat_disk",
@@ -365,7 +367,7 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to read volume file: %r\n", status);
       Halt();
     }
-    Print(L"success to read volume file\n");
+    Print(L"volume file readed\n");
   } else {
     EFI_BLOCK_IO_PROTOCOL* block_io;
     status = OpenBlockIoProtocolForLoadedImage(image_handle, &block_io);
@@ -373,7 +375,7 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to open Block I/O Protocol: %r\n", status);
       Halt();
     }
-    Print(L"success to open Block I/O Protocol\n");
+    Print(L"Block I/O Protocol opened\n");
 
     EFI_BLOCK_IO_MEDIA* media = block_io->Media;
     UINTN volume_bytes = (UINTN)media->BlockSize * (media->LastBlock + 1);
@@ -386,7 +388,7 @@ EFI_STATUS EFIAPI UefiMain(
       Print(L"failed to read blocks: %r\n", status);
       Halt();
     }
-      Print(L"success to read blocks\n");
+    Print(L"blocks readed\n");
   }
 
   struct FrameBufferConfig config = {
