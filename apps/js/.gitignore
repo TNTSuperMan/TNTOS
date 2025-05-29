@@ -1,3 +1,3 @@
-duktape
-/js
+js
 /*.o
+/*/*.o
