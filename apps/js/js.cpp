@@ -38,7 +38,9 @@ int main(int argc, char** argv) {
   duk_push_c_function(ctx, print, DUK_VARARGS);
   duk_put_global_string(ctx, "print");
 
-  duk_eval_string(ctx, script);
+  if(duk_peval_string(ctx, script)){
+    printf("%s\n", duk_safe_to_string(ctx, -1));
+  }
 
   duk_destroy_heap(ctx);
   return 0;
