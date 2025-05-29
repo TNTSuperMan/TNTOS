@@ -17,5 +17,5 @@ https://github.com/TNTSuperMan/TNTOS/commits/master/
 使っているライブラリです。
 ### newlib (/license/newlib.txt)
 使っているライブラリです。
-### elk (/license/elk.txt)
+### duktape (/license/duktape.txt)
 jsアプリで使われているJavaScriptエンジンライブラリです。
