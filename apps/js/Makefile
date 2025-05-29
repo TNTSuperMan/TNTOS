@@ -1,3 +1,3 @@
 TARGET = js
-OBJS = js.o elk.o
+OBJS = js.o duktape/duktape.o 
 include ../Makefile.elfapp

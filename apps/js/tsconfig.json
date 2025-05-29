@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "lib": [],
-        "target": "es6",
-        "module": "es6"
-    }
-}
