@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include "console/console.hpp"
-#include "logger.hpp"
+#include "console/logger.hpp"
 #include "app/task.hpp"
 
 namespace {

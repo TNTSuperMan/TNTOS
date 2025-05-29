@@ -7,7 +7,7 @@
 #include "pci.hpp"
 
 #include "legacy/asmfunc.h"
-#include "logger.hpp"
+#include "console/logger.hpp"
 
 namespace {
   using namespace pci;

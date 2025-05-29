@@ -1,4 +1,5 @@
 #include "./file.hpp"
+#include "../../syscall.h"
 
 duk_ret_t readFile(duk_context *ctx) {
   const char* path = duk_get_string(ctx, -1);

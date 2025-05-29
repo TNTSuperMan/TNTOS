@@ -8,7 +8,7 @@
 
 #include "legacy/asmfunc.h"
 #include "legacy/msr.hpp"
-#include "logger.hpp"
+#include "console/logger.hpp"
 #include "app/task.hpp"
 #include "console/terminal.hpp"
 #include "graphic/font.hpp"

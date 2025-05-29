@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include "legacy/asmfunc.h"
-#include "logger.hpp"
+#include "console/logger.hpp"
 
 namespace {
 
