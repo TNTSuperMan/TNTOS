@@ -17,7 +17,7 @@ duk_ret_t print(duk_context *ctx) {
 
 int main(int argc, char** argv) {
   if(argc != 2){
-    printf("usage: js [path]\n");
+    printf("usage: oden [path]\n");
     return 0;
   }
   SyscallResult res = SyscallOpenFile(argv[1], 0);
