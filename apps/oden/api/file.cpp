@@ -2,13 +2,9 @@
 #include "../../syscall.h"
 
 duk_ret_t readFile(duk_context *ctx) {
-  const char* path = duk_get_string(ctx, -1);
+  const char* path = duk_require_string(ctx, -1);
   duk_pop(ctx);
 
-  if(!path) {
-    duk_error(ctx, DUK_ERR_ERROR, "path must be a string");
-    return 0;
-  }
   size_t len;
   SyscallResult res = SyscallOpenFile(path, 0);
   if(res.error) {
@@ -29,18 +25,11 @@ duk_ret_t readFile(duk_context *ctx) {
 
 duk_ret_t writeFile(duk_context *ctx) {
   size_t len;
-  const char* path = duk_get_string(ctx, -2);
-  const char* input = duk_get_lstring(ctx, -1, &len);
+  const char* path = duk_require_string(ctx, -2);
+  const char* input = duk_require_lstring(ctx, -1, &len);
   duk_pop(ctx);
   duk_pop(ctx);
-  if(!path) {
-    duk_error(ctx, DUK_ERR_ERROR, "path must be a string");
-    return 0;
-  }
-  if(!input) {
-    duk_error(ctx, DUK_ERR_ERROR, "input must be a string");
-    return 0;
-  }
+  
   FILE* fp = fopen(path, "w");
   if(fp == nullptr){
     printf("path: %s", path);
