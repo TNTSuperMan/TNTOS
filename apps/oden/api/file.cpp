@@ -25,8 +25,18 @@ duk_ret_t readFile(duk_context *ctx) {
 
 duk_ret_t writeFile(duk_context *ctx) {
   size_t len;
+  void* buf;
   const char* path = duk_require_string(ctx, -2);
-  const char* input = duk_require_lstring(ctx, -1, &len);
+  if(duk_is_string(ctx, -1)) {
+    buf = (void*)duk_require_lstring(ctx, -1, &len);
+  } else if(duk_is_buffer_data(ctx, -1)) {
+    buf = duk_require_buffer_data(ctx, -1, &len);
+  } else {
+    duk_pop(ctx);
+    duk_pop(ctx);
+    duk_error(ctx, DUK_ERR_ERROR, "Input must be Buffer data or string");
+    return 0;
+  }
   duk_pop(ctx);
   duk_pop(ctx);
   
@@ -37,7 +47,7 @@ duk_ret_t writeFile(duk_context *ctx) {
     return 0;
   }
 
-  size_t res = fwrite(input, 1, len, fp);
+  size_t res = fwrite(buf, 1, len, fp);
   fclose(fp);
   if(res != len){
     printf("path: %s", path);
