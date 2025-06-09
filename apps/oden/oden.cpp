@@ -5,6 +5,7 @@
 #include "duktape/duktape.h"
 #include "duktape/duk_module_duktape.h"
 
+#include "api/app_ev.hpp"
 #include "api/file.hpp"
 
 duk_ret_t print(duk_context *ctx) {
@@ -27,6 +28,9 @@ duk_ret_t mod_search(duk_context *ctx) {
   
     duk_push_c_function(ctx, writeFile, 2);
     duk_put_prop_string(ctx, -2, "writeFile");
+  
+    duk_push_c_function(ctx, readEvent, 0);
+    duk_put_prop_string(ctx, -2, "readEvent");
 
     duk_put_prop_string(ctx, -2, "exports");
 
