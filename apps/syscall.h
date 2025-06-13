@@ -45,6 +45,27 @@ struct SyscallResult SyscallDemandPages(size_t num_pages, int flags);
 struct SyscallResult SyscallMapFile(int fd, size_t* file_size, int flags);
 struct SyscallResult SyscallIsTerminal(int fd);
 
+typedef unsigned short UINT16;
+typedef unsigned char UINT8;
+typedef unsigned int UINT32;
+typedef short INT16;
+
+typedef struct {
+  UINT16    Year;
+  UINT8     Month;
+  UINT8     Day;
+  UINT8     Hour;
+  UINT8     Minute;
+  UINT8     Second;
+  UINT8     Pad1;
+  UINT32    Nanosecond;
+  INT16     TimeZone;
+  UINT8     Daylight;
+  UINT8     Pad2;
+} EFI_TIME;
+
+struct SyscallResult SyscallGetTime(EFI_TIME* t);
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

@@ -15,6 +15,7 @@
 #include "io/timer.hpp"
 #include "io/keyboard.hpp"
 #include "app_event.hpp"
+#include "legacy/uefi.hpp"
 
 namespace syscall {
   struct Result {
@@ -408,13 +409,19 @@ SYSCALL(IsTerminal) {
   return { task.Files()[fd]->IsTerminal(), 0 };
 }
 
+SYSCALL(GetTime) {
+  EFI_TIME* t = reinterpret_cast<EFI_TIME*>(arg1);
+  uefi_rt->GetTime(t, nullptr);
+  return { 0, 0 };
+}
+
 #undef SYSCALL
 
 } // namespace syscall
 
 using SyscallFuncType = syscall::Result (uint64_t, uint64_t, uint64_t,
                                          uint64_t, uint64_t, uint64_t);
-extern "C" std::array<SyscallFuncType*, 0x11> syscall_table{
+extern "C" std::array<SyscallFuncType*, 0x12> syscall_table{
   /* 0x00 */ syscall::LogString,
   /* 0x01 */ syscall::PutString,
   /* 0x02 */ syscall::Exit,
@@ -432,6 +439,7 @@ extern "C" std::array<SyscallFuncType*, 0x11> syscall_table{
   /* 0x0e */ syscall::DemandPages,
   /* 0x0f */ syscall::MapFile,
   /* 0x10 */ syscall::IsTerminal,
+  /* 0x11 */ syscall::GetTime,
 };
 
 void InitializeSyscall() {
