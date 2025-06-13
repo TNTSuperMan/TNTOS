@@ -1,13 +1,12 @@
 #!/usr/bin/env bun
-import { readdirSync } from "fs"
 import { rm } from "fs/promises"
-import { resolve } from "path"
-import { Glob, spawn, stdout } from "bun"
+import { $, Glob, spawn, stdout } from "bun"
 
 const [,, option] = process.argv;
 
 switch(option){
   case "clean":
+    await $`rm -r **/.*.d`
     for await (const e of new Glob("**/*.o").scan()){
       rm(e);
     } break;
