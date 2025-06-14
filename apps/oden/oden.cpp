@@ -8,6 +8,7 @@
 #include "api/app_ev.hpp"
 #include "api/file.hpp"
 #include "api/time.hpp"
+#include "api/timer.hpp"
 
 duk_ret_t print(duk_context *ctx) {
   int nargs = duk_get_top(ctx);
@@ -35,6 +36,9 @@ duk_ret_t mod_search(duk_context *ctx) {
 
     duk_push_c_function(ctx, getTime, 0);
     duk_put_prop_string(ctx, -2, "getTime");
+
+    duk_push_c_function(ctx, createTimer, 3);
+    duk_put_prop_string(ctx, -2, "createTimer");
 
     duk_put_prop_string(ctx, -2, "exports");
 
