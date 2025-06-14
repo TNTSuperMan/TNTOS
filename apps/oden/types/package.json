@@ -1,11 +1,9 @@
 {
-  "name": "udon-types",
-  "module": "index.ts",
+  "name": "oden-types",
+  "description": "Type definitions and documentation for oden, an JavaScript runtime for TNTOS",
+  "version": "0.0.0",
+  "types": "src/index.d.ts",
   "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
   "peerDependencies": {
     "typescript": "^5"
   }
