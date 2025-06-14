@@ -9,6 +9,7 @@
 #include "api/file.hpp"
 #include "api/time.hpp"
 #include "api/timer.hpp"
+#include "api/window.hpp"
 
 duk_ret_t print(duk_context *ctx) {
   int nargs = duk_get_top(ctx);
@@ -39,6 +40,12 @@ duk_ret_t mod_search(duk_context *ctx) {
 
     duk_push_c_function(ctx, createTimer, 3);
     duk_put_prop_string(ctx, -2, "createTimer");
+
+    duk_push_c_function(ctx, openWindow, 5);
+    duk_put_prop_string(ctx, -2, "openWindow");
+
+    duk_push_c_function(ctx, closeWindow, 1);
+    duk_put_prop_string(ctx, -2, "closeWindow");
 
     duk_put_prop_string(ctx, -2, "exports");
 
