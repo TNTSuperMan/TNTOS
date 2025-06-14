@@ -47,3 +47,16 @@ duk_ret_t drawString(duk_context *ctx) {
 
   return 0;
 }
+
+duk_ret_t drawRectangle(duk_context *ctx) {
+  int lid = duk_require_uint(ctx, -6);
+  int x = duk_require_int(ctx, -5);
+  int y = duk_require_int(ctx, -4);
+  int w = duk_require_int(ctx, -3);
+  int h = duk_require_int(ctx, -2);
+  int c = duk_require_uint(ctx, -1);
+
+  SyscallWinFillRectangle(lid, x, y, w, h, c);
+
+  return 0;
+}

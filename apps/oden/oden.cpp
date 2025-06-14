@@ -53,6 +53,9 @@ duk_ret_t mod_search(duk_context *ctx) {
     duk_push_c_function(ctx, drawString, 5);
     duk_put_prop_string(ctx, -2, "drawString");
 
+    duk_push_c_function(ctx, drawRectangle, 6);
+    duk_put_prop_string(ctx, -2, "drawRectangle");
+
     duk_put_prop_string(ctx, -2, "exports");
 
     duk_pop(ctx);
