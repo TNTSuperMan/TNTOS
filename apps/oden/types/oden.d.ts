@@ -1,3 +1,5 @@
+declare function print(...args: unknown[]): void;
+
 declare module "oden" {
     export function getTime(): {
         day: number;
