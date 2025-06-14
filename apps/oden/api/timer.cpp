@@ -1,4 +1,4 @@
-#include "time.hpp"
+#include "timer.hpp"
 #include "../../syscall.h"
 
 duk_ret_t createTimer(duk_context *ctx) {
