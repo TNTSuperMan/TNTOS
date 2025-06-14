@@ -47,6 +47,9 @@ duk_ret_t mod_search(duk_context *ctx) {
     duk_push_c_function(ctx, closeWindow, 1);
     duk_put_prop_string(ctx, -2, "closeWindow");
 
+    duk_push_c_function(ctx, redrawWindow, 1);
+    duk_put_prop_string(ctx, -2, "redrawWindow");
+
     duk_put_prop_string(ctx, -2, "exports");
 
     duk_pop(ctx);

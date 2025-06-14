@@ -27,3 +27,11 @@ duk_ret_t closeWindow(duk_context *ctx) {
 
   return 0;
 }
+
+duk_ret_t redrawWindow(duk_context *ctx) {
+  unsigned int lid = duk_require_uint(ctx, -1);
+
+  SyscallWinRedraw(lid);
+
+  return 0;
+}
