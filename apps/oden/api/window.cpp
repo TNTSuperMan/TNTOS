@@ -60,3 +60,16 @@ duk_ret_t drawRectangle(duk_context *ctx) {
 
   return 0;
 }
+
+duk_ret_t drawLine(duk_context *ctx) {
+  int lid = duk_require_uint(ctx, -6);
+  int x1 = duk_require_int(ctx, -5);
+  int y1 = duk_require_int(ctx, -4);
+  int x2 = duk_require_int(ctx, -3);
+  int y2 = duk_require_int(ctx, -2);
+  int c = duk_require_uint(ctx, -1);
+
+  SyscallWinFillRectangle(lid, x1, y1, x2, y2, c);
+
+  return 0;
+}
