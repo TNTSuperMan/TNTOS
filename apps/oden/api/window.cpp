@@ -35,3 +35,15 @@ duk_ret_t redrawWindow(duk_context *ctx) {
 
   return 0;
 }
+
+duk_ret_t drawString(duk_context *ctx) {
+  int lid = duk_require_uint(ctx, -5);
+  int x = duk_require_int(ctx, -4);
+  int y = duk_require_int(ctx, -3);
+  int c = duk_require_uint(ctx, -2);
+  const char* s = duk_require_string(ctx, -1);
+  
+  SyscallWinWriteString(lid, x, y, c, s);
+
+  return 0;
+}
