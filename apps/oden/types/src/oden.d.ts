@@ -18,7 +18,7 @@ declare module "oden" {
     export function writeFile(path: string, input: string | ArrayBuffer | Buffer | DataView | Int8Array | Uint8Array | Uint8ClampedArray | Int16Array | Uint16Array | Int32Array | Uint32Array | Float32Array | Float64Array): void;
     
     // Window API
-    export function createWindow(width: number, height: number, x: number, y: number, title: string): number;
+    export function openWindow(width: number, height: number, x: number, y: number, title: string): number;
     export function closeWindow  (id: number): void;
     export function redrawWindow (id: number);
     export function drawString   (id: number, x: number, y: number, color: number, str: string): void;
