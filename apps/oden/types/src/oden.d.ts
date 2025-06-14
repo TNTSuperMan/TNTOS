@@ -1,4 +1,18 @@
 declare module "oden" {
+    export function getTime(): {
+        day: number;
+        daylight: number;
+        hour: number;
+        minute: number;
+        month: number;
+        nanosecond: number;
+        pad1: number;
+        pad2: number;
+        second: number;
+        timezone: number;
+        year: number;
+    }
+
     // File API
     export function readFile (path: string): string;
     export function writeFile(path: string, input: string | ArrayBuffer | Buffer | DataView | Int8Array | Uint8Array | Uint8ClampedArray | Int16Array | Uint16Array | Int32Array | Uint32Array | Float32Array | Float64Array): void;
