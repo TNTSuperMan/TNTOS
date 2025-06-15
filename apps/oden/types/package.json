@@ -1,7 +1,7 @@
 {
   "name": "oden-types",
   "description": "Type definitions and documentation for oden, an JavaScript runtime for TNTOS",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "types": "src/index.d.ts",
   "type": "module",
   "peerDependencies": {
