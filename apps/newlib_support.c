@@ -122,25 +122,14 @@ int gettimeofday(struct timeval *tv, void* tz) {
     }
   }
 
+  static const int month_days[12] = {
+    31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+  };
   for(int m = 1; m < t.Month; m++) {
-    switch(m){
-      case 1:  days += 31;
-      case 2:
-        if(is_leap_year(t.Year)){
-          days += 29;
-        }else{
-          days += 28;
-        }
-      case 3:  days += 31;
-      case 4:  days += 30;
-      case 5:  days += 31;
-      case 6:  days += 30;
-      case 7:  days += 31;
-      case 8:  days += 31;
-      case 9:  days += 30;
-      case 10: days += 31;
-      case 11: days += 30;
-      case 12: days += 31;
+    if(m == 2 && is_leap_year(t.Year)) {
+      days += 29;
+    } else {
+      days += month_days[m-1];
     }
   }
 
