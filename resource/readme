@@ -5,9 +5,9 @@ TNTOSはTNTSuperManがMikanOSを改造して作ったOSです。
 ### Mikanos (/license/mikanos.txt)
 このシステムの元とapps内の色々なアプリです。
 
-変更点に関してはこちらの2024年以降のコミットをご参照ください。
+変更点に関してはこちらをご参照ください。
 
-https://github.com/TNTSuperMan/TNTOS/commits/master/
+https://github.com/uchan-nos/mikanos/compare/master...TNTSuperMan:master
 
 ### IPAFont (/license/ipafont.txt)
 使っているフォントです。
