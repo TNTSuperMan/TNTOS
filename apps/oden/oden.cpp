@@ -7,7 +7,17 @@
 
 int main(int argc, char** argv) {
   if(argc == 1){
-    // TODO: REPL
+    printf("Welcome to oden\n");
+
+    OdenContext* ctx = new OdenContext();
+    char line[1024];
+    while (fgets(line, sizeof(line), stdin)){
+      const char* result = ctx->eval(line);
+      if(result != nullptr){
+        printf("%s\n", result);
+      }
+    }
+    printf("\n");
   }else if(argc == 2){
     auto res = SyscallOpenFile(argv[1], 0);
     if(res.error){
