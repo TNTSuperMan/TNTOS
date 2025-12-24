@@ -347,6 +347,15 @@ Rectangle<int> Terminal::InputKey(
       ++cursor_.y;
     } else {
       Scroll1();
+      draw_area.pos = ToplevelWindow::kTopLeftMargin;
+      draw_area.size = window_->InnerSize();
+    }
+    if (LayerID()) {
+      Message msg = MakeLayerMessage(
+          task_.ID(), LayerID(), LayerOperation::DrawArea, draw_area);
+      __asm__("cli");
+      task_manager->SendMessage(1, msg);
+      __asm__("sti");
     }
     ExecuteLine();
     Print(">");
@@ -483,6 +492,14 @@ void Terminal::ExecuteLine() {
                     {4, 4}, {8*kColumns, 16*kRows}, {0, 0, 0});
     }
     cursor_.y = 0;
+  } else if(strcmp(command, "exit") == 0) {
+    if(show_window_) {
+      CloseLayer(layer_id_);
+    }
+    int exit_code = 0;
+    if (first_arg) exit_code = atoi(first_arg);
+    __asm__("cli");
+    task_manager->Finish(exit_code);
   } else if (strcmp(command, "lspci") == 0) {
     for (int i = 0; i < pci::num_device; ++i) {
       const auto& dev = pci::devices[i];
